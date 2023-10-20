@@ -348,8 +348,9 @@ static void xinput_joypad_poll(void)
          /* Also note that on UWP, the controllers are not available on startup
           * and are instead 'plugged in' a moment later because Microsoft reasons */
          /* TODO: This may be bad for performance? */
-         if (new_connected)
+         // if (new_connected) //总是刷新,避免错误!
          {
+            RARCH_WARN("[XInput]: 销毁与重新初始化\n");
             /* This is kinda ugly, but it's the same thing that dinput does */
             xinput_joypad_destroy();
             xinput_joypad_init(NULL);
